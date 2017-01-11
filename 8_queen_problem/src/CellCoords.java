@@ -12,7 +12,7 @@ class CellCoords {
         this.j = j;
     }
 
-    private int getI() {
+    int getI() {
         return i;
     }
 
