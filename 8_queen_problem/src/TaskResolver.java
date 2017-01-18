@@ -6,14 +6,14 @@ import java.util.Optional;
  * Calculates possible solutions for 8 queen problem
  * in 64 cell desc.
  */
-class TaskResolver {
+public class TaskResolver {
 
     /**
-     * Returns next coords of cell, witch not been
+     * Returns next coords of cell, not
      * beaten by other queens, that already in stack,
      * horizontally and vertically.
      *
-     * NOTE THAT NEW CELL MAY BE BEATEN DIAGONALLY
+     * NEW CELL STILL MAY BE BEATEN DIAGONALLY
      *
      * @param queenCells already occupied cells
      * @param prev previous place of current queen

@@ -54,24 +54,4 @@ public class HorseMove {
         return standElement;
     }
 
-    /**
-     * Copies horse moves. Copies links on stand cells
-     * and creates new lists with unvisited cells with same links
-     * @param stack stack to copy
-     * @return new copied stack
-     */
-    public static Stack<HorseMove> copyMoveStack(Stack<HorseMove> stack){
-
-        Stack<HorseMove> copy = new Stack<>();
-
-        for (HorseMove move : stack) {
-            HorseMove copyMove = new HorseMove(move.standElement);
-            copyMove.unvisitedElements = new LinkedList<>(move.unvisitedElements);
-            copy.push(copyMove);
-        }
-
-        return copy;
-
-    }
-
 }

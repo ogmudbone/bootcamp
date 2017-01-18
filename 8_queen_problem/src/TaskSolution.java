@@ -2,7 +2,7 @@
  * Represent 8 queen problem solution.
  * Can print itself in console.
  */
-class TaskSolution {
+public class TaskSolution {
 
     /**
      * Stack of queens positions from TaskResolver
@@ -27,7 +27,8 @@ class TaskSolution {
      * |___|___|___|___|___|___|___|_♕_|
      *
      * NOTE: IN CONSOLE SYMBOLS IS MONOSPACED,
-     *       DESC WOULD NOT LOOK SO UGLY.
+     *       DESC WOULD NOT LOOK SO UGLY,
+     *       AS IT MIGHT LOOK HERE.
      *
      */
     void printSolution(){

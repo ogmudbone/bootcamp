@@ -2,7 +2,7 @@
  * Represents cell in chess desc occupied by queen
  * Has i and j coordinates (meant as in matrix)
  */
-class CellCoords {
+public class CellCoords {
 
     private int i;
     private int j;

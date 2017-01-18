@@ -5,9 +5,20 @@ public class TaskSolution {
     private Stack<HorseMove> moves;
 
     public TaskSolution(Stack<HorseMove> moves) {
-        this.moves = moves;
+
+        this.moves = new Stack<>();
+
+        for (HorseMove move : moves) {
+            HorseMove copyMove = new HorseMove(move.getStandElement());
+            this.moves.push(copyMove);
+        }
+
     }
 
+    /**
+     * Print solution in console using
+     * chess notation.
+     */
     public void printSolution(){
 
         for(HorseMove move : moves){

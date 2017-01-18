@@ -18,77 +18,104 @@ public class TaskResolver {
     }
 
     /**
-     * Finds solution of knights tour.
-     * Uses previous solution to find next
-     * @param prev previous solution. Can be null.
-     *             In this case starts from beginning
-     * @return solution of knights tour
+     * Returns new task state to get
+     * solutions from beginning
+     *
+     * @return new task state
      */
-    public TaskState getSolution(TaskState prev){
+    public TaskState getNewTaskState(){
 
-        TaskState currentState;
+        TaskState newState = new TaskState();
 
-        if(prev == null) {
-            currentState = new TaskState();
-            currentState.graph = new DescGraph();
-            currentState.moveStack = new Stack<>();
-            currentState.moveStack.push(
-                    new HorseMove(currentState.graph.getFirst())
-            );
-            currentState.hasSolution = true;
-        }
-        else {
-            currentState = prev.copy();
-            if(!(currentState.hasSolution = rollBack(currentState)))
-                return currentState;
-        }
+        newState.graph = new DescGraph();
+        newState.moveStack = new Stack<>();
+        newState.hasSolution = false;
+        newState.isNew = true;
 
-        while (currentState.moveStack.size() < 64 ||
-                !currentState.moveStack.peek().getStandElement().hasNeighbour(currentState.graph.getFirst())){
+        newState.moveStack.push(
+                new HorseMove(newState.graph.getFirst())
+        );
 
-            if(currentState.moveStack.size() == 64 && !rollBack(currentState)) {
-                currentState.hasSolution = false;
-                return currentState;
-            }
-
-            if(currentState.moveStack.peek().hasNextMove())
-                currentState.moveStack.push(
-                        new HorseMove(currentState.moveStack.peek().getNextMove())
-                );
-            else if(!rollBack(currentState)){
-                currentState.hasSolution = false;
-                return currentState;
-            }
-
-        }
-
-        return currentState;
+        return newState;
 
     }
 
     /**
+     * Finds solution of knights tour.
+     * Uses previous solution to find next
+     * @param state previous solution. Can be null.
+     *             In this case starts from beginning
+     */
+    public void getSolution(TaskState state){
+
+        if(state.isNew) {
+            state.isNew = false;
+            state.hasSolution = true;
+        }
+        else {
+            if(!(state.hasSolution = rollBack(state)))
+                return;
+        }
+
+        while (state.moveStack.size() < 64 ||
+                !state.moveStack.peek().getStandElement().hasNeighbour(state.graph.getFirst())){
+
+            if(state.moveStack.size() == 64 && !rollBack(state)) {
+                state.hasSolution = false;
+                return;
+            }
+
+            if(state.moveStack.peek().hasNextMove())
+                state.moveStack.push(
+                        new HorseMove(state.moveStack.peek().getNextMove())
+                );
+
+            else if(!rollBack(state)){
+                state.hasSolution = false;
+                return;
+            }
+
+        }
+
+    }
+
+    /**
+     * Represents state of a task solutions
+     * Algorithm of finding knights tours uses
+     * previous solutions to find next.
+     * State contains data structures with this solution.
      *
+     * New instance of this class can be created using getNewTaskState
+     * method of TaskResolver class.
+     * By passing it to getSolution method in class above
+     * it possible to receive next solutions
      */
     public class TaskState{
 
         DescGraph graph = new DescGraph();
         Stack<HorseMove> moveStack;
         private boolean hasSolution;
+        private boolean isNew;
 
         private TaskState(){
 
         }
 
+        /**
+         * Returns solution object with print method.
+         * this object would not be changed by receiving next solution.
+         *
+         * @return current task solution
+         */
         public TaskSolution getSolution(){
-            return new TaskSolution(moveStack);
+            return new TaskSolution(this.moveStack);
         }
 
-        private TaskState copy(){
-            TaskState copy = new TaskState();
-            copy.moveStack = HorseMove.copyMoveStack(this.moveStack);
-            return copy;
-        }
-
+        /**
+         * Indicates, is current task state contains solution.
+         * @return true  - task state has solution,
+         *         false - task state don`t has solution.
+         */
         public boolean isHasSolution() {
             return hasSolution;
         }
