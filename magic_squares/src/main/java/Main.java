@@ -1,17 +1,19 @@
+import com.anotheria.bootcamp.magicsquares.TaskResolver;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class Main
 {
 
-    private static final int DEFAULT_SQUARES_AMOUNT = 1000;
+    private static final int DEFAULT_SQUARES_AMOUNT = 6000;
     private static final int SQUARES_SIZE = 5;
 
     private static int parseSquaresAmountString(String squaresAmountString){
 
         try {
             return Integer.parseInt(squaresAmountString);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e){
             return DEFAULT_SQUARES_AMOUNT;
         }
 
@@ -41,7 +43,7 @@ public class Main
             writer.write("\n Iteration " + iteration++ + ":\n");
             writer.write(state.getSolution().toString());
 
-        }while (state.isHasSolution() && iteration < squaresAmount);
+        } while (state.isHasSolution() && iteration < squaresAmount);
 
     }
 
