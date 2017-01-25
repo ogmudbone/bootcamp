@@ -103,6 +103,8 @@ public class TestManager {
     }
 
     /**
+     *
+     * Prints map in console
      *  _______________
      * | key  | value |
      * |##############|
