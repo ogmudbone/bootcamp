@@ -43,4 +43,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 squares.txt
-basic_server.jar
+basic_server*.jar
+**/target
+**/*.iml

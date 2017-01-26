@@ -8,6 +8,14 @@
     <artifactId>basic_server_tcp_client</artifactId>
     <version>1.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.anotheria.bootcamp</groupId>
+            <artifactId>basic_server_core</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -19,6 +27,27 @@
                             <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
             </plugin>
         </plugins>

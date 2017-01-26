@@ -1,5 +1,7 @@
 package com.anotheria.bootcamp.basic_server_tcp_client;
 
+import com.anotheria.bootcamp.basic_server_core.ClientArgumentsData;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -9,10 +11,10 @@ public class ServerMessageSender {
     private String address;
     private String message;
 
-    public ServerMessageSender(String address, int port, String message){
-        this.port    = port;
-        this.address  = address;
-        this.message = message;
+    public ServerMessageSender(ClientArgumentsData data){
+        this.port    = data.getPort();
+        this.address = data.getAddress();
+        this.message = data.getMessage();
     }
 
     public void send(){
