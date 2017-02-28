@@ -19,7 +19,7 @@ public class ServerMessageSender {
 
     public void send(){
 
-        Socket socket;
+        Socket socket = null;
         byte[] buffer = new byte[64 * 1024];
 
         try {
@@ -34,6 +34,11 @@ public class ServerMessageSender {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            if(socket != null) try {
+                socket.close();
+            } catch (IOException ignored) {}
         }
 
     }

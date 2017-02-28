@@ -1,5 +1,6 @@
 package com.anotheria.bootcamp.basic_server_core;
 
+@Deprecated
 public class ClientArgumentsData {
 
     private String address;
